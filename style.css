@@ -3,6 +3,16 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    font-family: 'Slackey', cursive;
+  }
+
+  .title {
+    height: auto;
+    width: 50%;
+    font-size: 2rem;
+    padding: 16px;
+    margin: 16px;
+   
   }
 
   .winner {

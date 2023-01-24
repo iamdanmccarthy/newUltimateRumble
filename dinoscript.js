@@ -25,9 +25,10 @@ const supersaurus = {
 
 
 
-
+/*
 let dino1 = document.getElementById('dinosaur-one').value;
 let dino2 = document.getElementById('dinosaur-two').value;
+*/
 
 const ultimateRumble = (dino1, dino2) => {
     let rollOfTheDice = 100 * Math.random();
