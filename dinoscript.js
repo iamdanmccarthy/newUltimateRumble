@@ -120,19 +120,19 @@ const ultimateRumble = (Dino1, Dino2) => {
 
   
     //console.log(`And the winner is the ${winner.name}!`)
-    document.getElementById("thewinner").innerHTML = `And the winner is the ${winner}`;
+    document.getElementById("the-winner").innerHTML = `And the winner is the ${winner}`;
  
 }
 
 
 //console.log(ultimateRumble(trex, ankylosaurus));
 
-let firstFighter = document.getElementById('dinosaur-one');
-let secondFighter = document.getElementById('dinosaur-two');
+let firstFighter = document.getElementById('dinosaur-one').value;
+let secondFighter = document.getElementById('dinosaur-two').value;
 
-ultimateRumble(firstFighter, secondFighter);
+//ultimateRumble(firstFighter, secondFighter);
 
 
 const fightButton = document.getElementById('winner-button')
 
-fightButton.onclick = ultimateRumble();
+fightButton.onclick = ultimateRumble(firstFighter, secondFighter);
