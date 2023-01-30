@@ -82,7 +82,9 @@ console.log(firstFighter.power)
 
 const ultimateRumble = ( Dino1, Dino2 ) => {
 console.log(`testing: ${Dino1.power}`)
-    
+
+winningParagraph.innerHTML = "This part isn't working yet lol ¯\_(ツ)_/¯"
+
     let rollOfTheDice = 100 * Math.random();
     let winner;
     let likelyWinner;
