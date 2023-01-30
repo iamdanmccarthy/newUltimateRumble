@@ -9,7 +9,7 @@ body {
   .title {
     height: auto;
     width: 50%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 16px;
     margin: 16px;
    
@@ -83,5 +83,9 @@ body {
   }
 
   #the-winner {
-    font-size: 30px;
+    font-size: 1.7rem;
+  }
+
+  .choose {
+    font-size: 1.5rem;
   }
