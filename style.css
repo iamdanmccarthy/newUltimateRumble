@@ -16,7 +16,7 @@ body {
   }
 
   .winner {
-    border: 1px solid black;
+   
     margin: 50px;
     padding: auto;
   }
@@ -87,7 +87,6 @@ body {
     width: auto;
     margin: auto;
     justify-content: center;
-    border: 1px solid black;
   }
 
   .choose {
