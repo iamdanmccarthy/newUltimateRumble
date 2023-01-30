@@ -71,6 +71,7 @@ const dinosaurs = [Ankylosaurus, Brachiosaurus, Carnotaurus, Dilophosaurus, Micr
 
 let select1 = document.getElementById('dinosaur-one');
 let select2 = document.getElementById('dinosaur-two');
+const winningParagraph = document.getElementById('the-winner');
 
 for (let obj of dinosaurs) {
     let option = document.createElement("option");
@@ -86,14 +87,10 @@ for (let obj of dinosaurs) {
       select2.add(option);
   }
 
-const winningParagraph = document.getElementById('the-winner');
-
-let firstFighter = document.getElementById('dinosaur-one').value;
-let secondFighter = document.getElementById('dinosaur-two').value;
 
 const fightButton = document.getElementById('winner-button')
 
-fightButton.onclick = function() {ultimateRumble(firstFighter, secondFighter)};
+fightButton.onclick = function() {ultimateRumble(select1, select2)};
 
 const ultimateRumble = () => {
 
