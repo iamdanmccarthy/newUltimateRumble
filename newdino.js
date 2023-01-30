@@ -5,12 +5,12 @@ const Trex = {
 
 const Ankylosaurus = {
     name: "Ankylosaurus",
-    power: 75
+    power: 74
 }
 
 const Spinosaurus = {
     name: "Spinosaurus",
-    power: 95
+    power: 96
 }
 
 const Pachycephalosaurus = {
@@ -35,7 +35,7 @@ const Pteradactyl = {
 
 const Velociraptor = {
     name: "Velociraptor",
-    power: 80
+    power: 83
 }
 
 const Micropachycephalosaurus = {
@@ -44,30 +44,47 @@ const Micropachycephalosaurus = {
 }
 const Carnotaurus = {
     name: "Carnotaurus",
-    power: 95
+    power: 94
 }
 
-const dinosaurs = [Trex, Ankylosaurus, Spinosaurus, Pachycephalosaurus, Supersaurus, Stegosaurus, Pteradactyl, Velociraptor, Micropachycephalosaurus, Carnotaurus];
-
-
-
-
-
-
-let select1 = document.getElementById("dinosaur-one");
-for(index in dinosaurs) {
-    select1.options[select1.options.length] = new Option(dinosaurs[index].name);
+const Parasaurolophus = {
+    name: "Parasaurolophus",
+    power: 50
 }
 
-let select2 = document.getElementById("dinosaur-two");
-for(index in dinosaurs) {
-    select2.options[select2.options.length] = new Option(dinosaurs[index].name);
+const Triceratops = {
+    name: "Triceratops",
+    power: 70
 }
 
-/*
+const Dilophosaurus = {
+    name: "Dilophosaurus",
+    power: 82
+}
 
+const Brachiosaurus = {
+    name: "Brachiosaurus",
+    power: 78
+}
 
-*/
+const dinosaurs = [Trex, Ankylosaurus, Spinosaurus, Pachycephalosaurus, Supersaurus, Stegosaurus, Pteradactyl, Velociraptor, Micropachycephalosaurus, Carnotaurus, Parasaurolophus, Triceratops, Dilophosaurus, Brachiosaurus];
+
+let select1 = document.getElementById('dinosaur-one');
+let select2 = document.getElementById('dinosaur-two');
+
+for (let obj of dinosaurs) {
+    let option = document.createElement("option");
+    option.text = obj.name;
+    option.value = JSON.stringify(obj);
+    select1.add(option);
+  }
+  
+    for (let obj of dinosaurs) {
+      let option = document.createElement("option");
+      option.text = obj.name;
+      option.value = JSON.stringify(obj);
+      select2.add(option);
+  }
 
 const winningParagraph = document.getElementById('the-winner');
 
@@ -78,25 +95,25 @@ const fightButton = document.getElementById('winner-button')
 
 fightButton.onclick = function() {ultimateRumble(firstFighter, secondFighter)};
 
-console.log(firstFighter.power)
+const ultimateRumble = () => {
 
-const ultimateRumble = ( Dino1, Dino2 ) => {
-console.log(`testing: ${Dino1.power}`)
-
-winningParagraph.innerHTML = "This part isn't working yet lol ¯\_(ツ)_/¯"
-
+    let selected1 = document.getElementById('dinosaur-one').value;
+    let selected2 = document.getElementById('dinosaur-two').value;
+    let dinosaur1 = JSON.parse(selected1);
+    let dinosaur2 = JSON.parse(selected2);
+  
     let rollOfTheDice = 100 * Math.random();
     let winner;
     let likelyWinner;
     let likelyLoser;
    
     //determine the likely winner based on power
-   if (Dino1.power >= Dino2.power) {
-        likelyWinner = Dino1;
-        likelyLoser = Dino2;
-    } else if (Dino2.power >= Dino1.power){
-        likelyWinner = Dino2;
-        likelyLoser - Dino1;
+   if (dinosaur1.power >= dinosaur2.power) {
+        likelyWinner = dinosaur1;
+        likelyLoser = dinosaur2;
+    } else if (dinosaur2.power >= dinosaur1.power){
+        likelyWinner = dinosaur2;
+        likelyLoser - dinosaur1;
     }
     
     /*
@@ -124,12 +141,9 @@ winningParagraph.innerHTML = "This part isn't working yet lol ¯\_(ツ)_/¯"
         winner = likelyLoser
     }
 
+    winningParagraph.innerHTML = `And the winner is the ${winner.name}`;
   
-    //console.log(`And the winner is the ${winner.name}!`)
-    winningParagraph.innerHTML = `And the winner is the ${winner}`;
- 
-}
-
+  };
 
 //console.log(ultimateRumble(trex, ankylosaurus));
 

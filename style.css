@@ -81,3 +81,7 @@ body {
   .button:active {
     background-color: #000000;
   }
+
+  #the-winner {
+    font-size: 30px;
+  }
