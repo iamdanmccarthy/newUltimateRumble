@@ -128,7 +128,7 @@ const ultimateRumble = () => {
         winner = likelyLoser
     }
 
-    winningParagraph.innerHTML = `And the winner is the ${winner.name}`;
+    winningParagraph.innerHTML = `${winner.name} wins!`;
   
   };
 

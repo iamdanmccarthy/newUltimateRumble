@@ -16,9 +16,9 @@ body {
   }
 
   .winner {
-    height: 50px;
+    border: 1px solid black;
     margin: 50px;
-    padding: 50px;
+    padding: auto;
   }
 
   .dropbtn {
@@ -84,11 +84,15 @@ body {
   }
 
   #the-winner {
-    font-size: 1.7rem;
+    width: auto;
+    margin: auto;
+    justify-content: center;
+    border: 1px solid black;
   }
 
   .choose {
     font-size: 1.5rem;
+    
   }
 
   .main {
