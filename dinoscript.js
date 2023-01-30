@@ -56,12 +56,12 @@ const dinosaurs = [Trex, Ankylosaurus, Spinosaurus, Pachycephalosaurus, Supersau
 
 let select1 = document.getElementById("dinosaur-one");
 for(index in dinosaurs) {
-    select1.options[select1.options.length] = new Option(dinosaurs[index].name, index);
+    select1.options[select1.options.length] = new Option(dinosaurs[index].name);
 }
 
 let select2 = document.getElementById("dinosaur-two");
 for(index in dinosaurs) {
-    select2.options[select2.options.length] = new Option(dinosaurs[index].name, index);
+    select2.options[select2.options.length] = new Option(dinosaurs[index].name);
 }
 
 /*
@@ -69,19 +69,25 @@ for(index in dinosaurs) {
 
 */
 
+const winningParagraph = document.getElementById('the-winner');
 
+let firstFighter = document.getElementById('dinosaur-one').value;
+let secondFighter = document.getElementById('dinosaur-two').value;
 
+const fightButton = document.getElementById('winner-button')
 
+fightButton.onclick = function() {ultimateRumble(firstFighter, secondFighter)};
 
-const ultimateRumble = (Dino1, Dino2) => {
+console.log(firstFighter.power)
+
+const ultimateRumble = ( Dino1, Dino2 ) => {
+console.log(`testing: ${Dino1.power}`)
+    
     let rollOfTheDice = 100 * Math.random();
     let winner;
     let likelyWinner;
     let likelyLoser;
-
-
-
-
+   
     //determine the likely winner based on power
    if (Dino1.power >= Dino2.power) {
         likelyWinner = Dino1;
@@ -91,13 +97,11 @@ const ultimateRumble = (Dino1, Dino2) => {
         likelyLoser - Dino1;
     }
     
- 
-
+    /*
     console.log(`${likelyWinner.name} is the likely winner`)
     console.log(`${likelyLoser.name} is the likely loser`)
-    
+    */
   
-
     let num1 = likelyWinner.power;
     let num2 = likelyLoser.power;
 
@@ -120,19 +124,15 @@ const ultimateRumble = (Dino1, Dino2) => {
 
   
     //console.log(`And the winner is the ${winner.name}!`)
-    document.getElementById("the-winner").innerHTML = `And the winner is the ${winner}`;
+    winningParagraph.innerHTML = `And the winner is the ${winner}`;
  
 }
 
 
 //console.log(ultimateRumble(trex, ankylosaurus));
 
-let firstFighter = document.getElementById('dinosaur-one').value;
-let secondFighter = document.getElementById('dinosaur-two').value;
+
 
 //ultimateRumble(firstFighter, secondFighter);
 
 
-const fightButton = document.getElementById('winner-button')
-
-fightButton.onclick = ultimateRumble(firstFighter, secondFighter);
