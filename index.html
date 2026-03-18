@@ -2,80 +2,42 @@
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
     <title>Ultimate Dinosaur Rumble!</title>
     <link rel="icon" type="image/x-icon" href="/images/dino-icon.png">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
 
-    </head>
-    
-    <body>
-    
-   <center>
-    <div  class="title">
-    <h1>Ultimate Dinosaur Rumble</h1>
+  <body>
+
+    <div class="title">
+      <h1>Ultimate Dinosaur Rumble</h1>
     </div>
-   
-        <div class="main">
-    <div class="winner">
-        <p class="the-winner" id="the-winner">Who will win?</p>
-    </div>
-    
 
-                  <p id="choose">Select your Dinosaurs!</p>
-                 <div class="dropdown">
-                  <label for="dino1"></label>
-                    <select name="dinosaur-one" id="dinosaur-one" class="dropbtn">
-                       
-                    </select>
-                </div>
-VERSUS 
-                  
-                <div class="dropdown">
-                    <label for="dino2"></label>
-                    <select name="dinosaur-two" id="dinosaur-two" class="dropbtn">
-                       
-                    </select>
-                    </div>
+    <div class="card">
 
-       <div>
+      <p id="the-winner">Who will win?</p>
+
+      <p class="choose">Select your Dinosaurs!</p>
+
+      <div class="fighters">
+        <select name="dinosaur-one" id="dinosaur-one" class="dropbtn"></select>
+        <span class="versus">VS</span>
+        <select name="dinosaur-two" id="dinosaur-two" class="dropbtn"></select>
+      </div>
+
+      <div class="buttons">
         <button class="button" id="winner-button">FIGHT!</button>
-        <button type="button" class="button" onClick="window.location.reload()">
-   RESET!
-</button>
+        <button class="button reset" onClick="window.location.reload()">RESET!</button>
+      </div>
 
-       </div> 
-                  </div>
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-          
-        </div>
     </div>
 
-</center>
-   
-    
-   <!-- Dinosaur Script -->
     <script src="newdino.js"></script>
-   <!-- >
-    <script src="newdino.js"></script>
-  script src="dinoscript.js"></script>
--->
-
 
   </body>
 </html>

@@ -1,103 +1,115 @@
 body {
-    background-image: url('/images/greenbg.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    font-family: 'Slackey', cursive;
-  }
+  background-image: url('/images/greenbg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Slackey', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-  .title {
-    height: auto;
-    width: 50%;
-    font-size: 1.5rem;
-    padding: 16px;
-    margin: 16px;
-   
-  }
+.title {
+  font-size: 1.8rem;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.6);
+  margin: 20px 0 16px;
+  text-align: center;
+}
 
-  .winner {
-   
-    margin: 50px;
-    padding: auto;
-  }
+.title h1 {
+  margin: 0;
+}
 
-  .dropbtn {
-    background-color: #fb6222;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    margin: 20px;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #fb6222;
-  }
+.card {
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
 
-  .button {
-    background-color: #fb6222;
-    color: white;
-    padding: 24px;
-    font-family: 'Slackey', cursive;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    margin-top: 25px;
-  }
+#the-winner {
+  font-size: 1.6rem;
+  color: #fb6222;
+  min-height: 2.5rem;
+  margin: 0 0 24px;
+}
 
-  .button:hover {
-    background-color: #0fa31b;
-  }
+.choose {
+  font-size: 1.1rem;
+  color: white;
+  margin: 0 0 20px;
+}
 
-  .button:active {
-    background-color: #000000;
-  }
+.fighters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
 
-  #the-winner {
-    width: auto;
-    margin: auto;
-    justify-content: center;
-  }
+.versus {
+  font-size: 1.4rem;
+  color: white;
+  font-weight: bold;
+}
 
-  .choose {
-    font-size: 1.5rem;
-    
-  }
+.dropbtn {
+  background-color: #fb6222;
+  color: white;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: 'Slackey', cursive;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 160px;
+  max-width: 220px;
+}
 
-  .main {
-    height: auto;
-    width: 50%;
-   
-    padding: 16px;
-    margin: 16px;
-  }
+.dropbtn:hover {
+  background-color: #e05510;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.button {
+  background-color: #fb6222;
+  color: white;
+  padding: 16px 32px;
+  font-family: 'Slackey', cursive;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover {
+  background-color: #0fa31b;
+}
+
+.button:active {
+  background-color: #000000;
+}
+
+.button.reset {
+  background-color: #555;
+}
+
+.button.reset:hover {
+  background-color: #333;
+}

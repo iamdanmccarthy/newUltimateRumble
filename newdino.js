@@ -110,7 +110,7 @@ const ultimateRumble = () => {
         likelyLoser = dinosaur2;
     } else if (dinosaur2.power >= dinosaur1.power){
         likelyWinner = dinosaur2;
-        likelyLoser - dinosaur1;
+        likelyLoser = dinosaur1;
     }
     
     let num1 = likelyWinner.power;
