@@ -19,6 +19,8 @@ const allDinosaurs = [
 
 let playerDinos = [];
 let bracket = null;
+let activeRound = 0;
+let activeMatchIndex = 0;
 
 function isPlayerDino(dino) {
     return dino && playerDinos.some(d => d.name === dino.name);
@@ -70,13 +72,16 @@ function startTournament() {
         [{ d1: null, d2: null, winner: null }]
     ];
 
+    activeRound = 0;
+    activeMatchIndex = 0;
+
     document.getElementById('selection-phase').style.display = 'none';
     document.getElementById('bracket-phase').style.display = 'flex';
     renderBracket();
 }
 
 function doFight(round, matchIndex) {
-    // Find the card and animate it before resolving
+    // Find the active card and animate it
     const cards = document.getElementById(`round-${round}`).querySelectorAll('.match-card');
     const card = cards[matchIndex];
     card.classList.add('fighting');
@@ -90,6 +95,14 @@ function doFight(round, matchIndex) {
             const nextSlot  = matchIndex % 2;
             if (nextSlot === 0) bracket[round + 1][nextMatch].d1 = match.winner;
             else                bracket[round + 1][nextMatch].d2 = match.winner;
+        }
+
+        // Advance to next match before re-rendering
+        if (activeMatchIndex + 1 < bracket[activeRound].length) {
+            activeMatchIndex++;
+        } else if (activeRound < 3) {
+            activeRound++;
+            activeMatchIndex = 0;
         }
 
         renderBracket();
@@ -118,13 +131,12 @@ function renderBracket() {
         return;
     }
 
-    // Check if all player dinos have been eliminated
+    // Check if all player dinos have been eliminated before the final
     const allRoundsDone = bracket.slice(0, 3).every(round =>
         round.every(match => match.winner !== null)
     );
     if (allRoundsDone) {
-        const playerStillAlive = bracket[3][0].d1 && isPlayerDino(bracket[3][0].d1)
-            || bracket[3][0].d2 && isPlayerDino(bracket[3][0].d2);
+        const playerStillAlive = isPlayerDino(bracket[3][0].d1) || isPlayerDino(bracket[3][0].d2);
         if (!playerStillAlive && !bracket[3][0].winner) {
             banner.className = 'banner loss';
             banner.textContent = 'All your dinos have been eliminated! The house wins.';
@@ -134,6 +146,31 @@ function renderBracket() {
 }
 
 function buildMatchCard(round, index, match) {
+    const isExpanded = (round === activeRound && index === activeMatchIndex);
+    const pairGap = (round === 0 && index % 2 === 1 && index < 7) ? ' pair-gap' : '';
+
+    // --- Collapsed card ---
+    if (!isExpanded) {
+        const d1Name   = match.d1 ? match.d1.name : '???';
+        const d2Name   = match.d2 ? match.d2.name : '???';
+        const d1Star   = isPlayerDino(match.d1) ? ' ⭐' : '';
+        const d2Star   = isPlayerDino(match.d2) ? ' ⭐' : '';
+
+        let summary;
+        if (match.winner) {
+            const winnerName = match.winner.name;
+            const loserName  = match.winner.name === d1Name ? d2Name : d1Name;
+            const winnerStar = isPlayerDino(match.winner) ? ' ⭐' : '';
+            const loserStar  = (winnerName === d1Name ? isPlayerDino(match.d2) : isPlayerDino(match.d1)) ? ' ⭐' : '';
+            summary = `<span class="won">${winnerName}${winnerStar}</span> <span class="defeated">defeated</span> <span class="lost">${loserName}${loserStar}</span>`;
+        } else {
+            summary = `<span>${d1Name}${d1Star}</span> <span class="vs-sep">vs</span> <span>${d2Name}${d2Star}</span>`;
+        }
+
+        return `<div class="match-card collapsed${pairGap}"><div class="match-summary">${summary}</div></div>`;
+    }
+
+    // --- Expanded card ---
     const d1Pending = !match.d1;
     const d2Pending = !match.d2;
     const d1Name    = match.d1 ? match.d1.name : '???';
@@ -148,11 +185,8 @@ function buildMatchCard(round, index, match) {
     const d1Player = isPlayerDino(match.d1) ? ' <span class="player-mark">⭐</span>' : '';
     const d2Player = isPlayerDino(match.d2) ? ' <span class="player-mark">⭐</span>' : '';
 
-    // Add extra gap after every pair in Round 1 (pairs feed into the same QF match)
-    const pairGap = (round === 0 && index % 2 === 1 && index < 7) ? ' pair-gap' : '';
-
     return `
-        <div class="match-card${pairGap}">
+        <div class="match-card expanded${pairGap}">
             <div class="dino-slot ${d1Slot} ${isPlayerDino(match.d1) ? 'is-player' : ''}">${d1Name}${d1Player}</div>
             <div class="vs-label">VS</div>
             <div class="dino-slot ${d2Slot} ${isPlayerDino(match.d2) ? 'is-player' : ''}">${d2Name}${d2Player}</div>

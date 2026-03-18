@@ -8,31 +8,35 @@
     <link rel="icon" type="image/x-icon" href="/images/dino-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&family=Oswald:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
 
       /* --- Selection Phase --- */
       .selection-card {
-        background: rgba(0,0,0,0.65);
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 16px;
         padding: 40px;
         max-width: 700px;
         width: 100%;
         text-align: center;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.6);
       }
 
       .selection-card h2 {
-        color: white;
-        margin: 0 0 8px;
-        font-size: 1.1rem;
+        font-family: 'Oswald', sans-serif;
+        color: var(--text);
+        margin: 0 0 6px;
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
 
       .selection-card p {
-        color: #ccc;
-        font-family: sans-serif;
-        font-size: 0.9rem;
+        color: var(--muted);
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
         margin: 0 0 24px;
       }
 
@@ -46,13 +50,16 @@
       .pick-wrapper {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
         align-items: center;
       }
 
       .pick-wrapper label {
-        color: #fb6222;
-        font-size: 0.8rem;
+        color: var(--player);
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
       }
 
       .dino-pick {
@@ -84,44 +91,49 @@
       .round-col {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
         flex: 1;
         min-width: 0;
       }
 
       .round-title {
-        color: #fb6222;
-        font-size: 0.85rem;
+        font-family: 'Oswald', sans-serif;
+        color: var(--muted);
+        font-size: 0.75rem;
         text-align: center;
-        margin-bottom: 6px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
         flex-shrink: 0;
       }
 
-      /* Wrap each column's cards in a flex container */
       .col-inner {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         flex: 1;
+        gap: 6px;
       }
 
       .match-card {
-        background: rgba(0,0,0,0.65);
+        background: var(--surface);
+        border: 1px solid var(--border);
         border-radius: 10px;
         padding: 10px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
         display: flex;
         flex-direction: column;
         gap: 5px;
       }
 
       .dino-slot {
-        background: rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.04);
         border-radius: 6px;
         padding: 8px 6px;
-        color: white;
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
         font-size: 0.72rem;
+        font-weight: 500;
         min-height: 32px;
         display: flex;
         align-items: center;
@@ -131,62 +143,75 @@
       }
 
       .dino-slot.pending {
-        color: #555;
+        color: var(--muted);
         font-style: italic;
       }
 
       .dino-slot.winner {
-        background: #0fa31b;
-        color: white;
+        background: var(--win);
+        color: #fff;
+        animation: winner-pop 0.35s ease 0.05s both;
       }
 
       .dino-slot.loser {
-        opacity: 0.35;
+        background: rgba(239, 68, 68, 0.15);
+        color: var(--muted);
+        text-decoration: line-through;
       }
 
-      /* Player dinos get a subtle border when neither won/lost yet */
       .dino-slot.is-player:not(.winner):not(.loser):not(.pending) {
-        border: 1px solid rgba(251, 98, 34, 0.5);
+        border-left: 3px solid var(--player);
       }
 
       .player-mark {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
       }
 
       .vs-label {
-        color: #555;
-        font-size: 0.65rem;
+        font-family: 'Oswald', sans-serif;
+        color: var(--border);
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
       }
 
       .fight-btn {
         margin-top: 2px;
         padding: 7px 10px;
-        font-size: 12px;
+        font-size: 11px;
       }
 
-      /* --- Champion / Elimination Banner --- */
-      .banner {
-        display: none;
-        border-radius: 16px;
-        padding: 20px 32px;
-        font-size: 1.2rem;
-        text-align: center;
-        margin-top: 20px;
-        width: 100%;
-        max-width: 560px;
-        box-sizing: border-box;
+      .match-card.pair-gap {
+        margin-bottom: 16px;
       }
 
-      .banner.win {
-        background: linear-gradient(135deg, #fb6222, #e0a800);
-        color: white;
-        box-shadow: 0 8px 32px rgba(251,98,34,0.5);
+      /* --- Collapsed card --- */
+      .match-card.collapsed {
+        padding: 7px 10px;
       }
 
-      .banner.loss {
-        background: rgba(0,0,0,0.7);
-        color: #aaa;
-        border: 1px solid #444;
+      .match-summary {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.72rem;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+      }
+
+      .match-summary .won  { color: var(--win); }
+      .match-summary .lost { color: var(--lose); opacity: 0.6; text-decoration: line-through; }
+      .match-summary .defeated { color: var(--muted); font-size: 0.65rem; }
+      .match-summary .vs-sep { color: var(--border); }
+
+      /* --- Expanded card appear animation --- */
+      @keyframes card-expand {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .match-card.expanded {
+        animation: card-expand 0.3s ease;
       }
 
       /* --- Fight Animations --- */
@@ -200,46 +225,61 @@
         90%       { transform: translateX(2px); }
       }
 
-      @keyframes flash-orange {
-        0%, 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.3); background: rgba(0,0,0,0.65); }
-        40%       { box-shadow: 0 0 24px rgba(251,98,34,0.9); background: rgba(251,98,34,0.25); }
+      @keyframes flash-gold {
+        0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.4); background: var(--surface); }
+        40%       { box-shadow: 0 0 28px rgba(245,158,11,0.8); background: rgba(245,158,11,0.15); }
       }
 
       @keyframes winner-pop {
         0%   { transform: scale(1); }
-        50%  { transform: scale(1.06); }
+        50%  { transform: scale(1.05); }
         100% { transform: scale(1); }
       }
 
       .match-card.fighting {
-        animation: shake 0.75s ease, flash-orange 0.75s ease;
+        animation: shake 0.75s ease, flash-gold 0.75s ease;
         pointer-events: none;
       }
 
-      .dino-slot.winner {
-        animation: winner-pop 0.35s ease 0.05s both;
+      /* --- Champion / Elimination Banner --- */
+      .banner {
+        display: none;
+        font-family: 'Oswald', sans-serif;
+        border-radius: 12px;
+        padding: 20px 32px;
+        font-size: 1.3rem;
+        letter-spacing: 0.04em;
+        text-align: center;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 560px;
+        box-sizing: border-box;
       }
 
-      .col-inner {
-        gap: 6px;
+      .banner.win {
+        background: linear-gradient(135deg, #d97706, #f59e0b);
+        color: #0e0e12;
+        box-shadow: 0 8px 32px rgba(245,158,11,0.4);
       }
 
-      .match-card.pair-gap {
-        margin-bottom: 16px;
+      .banner.loss {
+        background: rgba(239,68,68,0.1);
+        color: var(--muted);
+        border: 1px solid rgba(239,68,68,0.3);
       }
 
       /* --- Misc --- */
       .bottom-bar {
         display: flex;
-        gap: 12px;
+        gap: 16px;
         margin-top: 16px;
         align-items: center;
       }
 
       .legend {
-        color: #aaa;
+        color: var(--muted);
         font-size: 0.75rem;
-        font-family: sans-serif;
+        font-family: 'Inter', sans-serif;
       }
 
       @media (max-width: 700px) {
@@ -267,7 +307,7 @@
       <h2>Pick Your 8 Dinosaurs</h2>
       <p>The remaining 8 will be your opponents. No duplicates!</p>
       <div class="dino-grid" id="dino-selects"></div>
-      <button class="button" onclick="startTournament()">START TOURNAMENT</button>
+      <button class="button" onclick="startTournament()">Start Tournament</button>
     </div>
 
     <!-- BRACKET PHASE -->
@@ -300,7 +340,7 @@
 
       <div class="bottom-bar">
         <span class="legend">⭐ = your pick</span>
-        <button class="button reset" onclick="window.location.reload()">START OVER</button>
+        <button class="button reset" onclick="window.location.reload()">Start Over</button>
       </div>
     </div>
 
