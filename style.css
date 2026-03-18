@@ -1,3 +1,20 @@
+.nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-link {
+  color: white;
+  font-size: 0.85rem;
+  text-decoration: none;
+  opacity: 0.7;
+  font-family: 'Slackey', cursive;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
 body {
   background-image: url('/images/greenbg.jpg');
   background-repeat: no-repeat;

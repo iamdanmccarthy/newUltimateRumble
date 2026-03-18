@@ -67,7 +67,17 @@ const Brachiosaurus = {
     power: 78
 }
 
-const dinosaurs = [Ankylosaurus, Brachiosaurus, Carnotaurus, Dilophosaurus, Micropachycephalosaurus, Pachycephalosaurus, Parasaurolophus, Pteradactyl, Spinosaurus, Stegosaurus, Supersaurus, Triceratops, Trex, Velociraptor];
+const Allosaurus = {
+    name: "Allosaurus",
+    power: 79
+}
+
+const Iguanodon = {
+    name: "Iguanodon",
+    power: 48
+}
+
+const dinosaurs = [Allosaurus, Ankylosaurus, Brachiosaurus, Carnotaurus, Dilophosaurus, Iguanodon, Micropachycephalosaurus, Pachycephalosaurus, Parasaurolophus, Pteradactyl, Spinosaurus, Stegosaurus, Supersaurus, Triceratops, Trex, Velociraptor];
 
 let select1 = document.getElementById('dinosaur-one');
 let select2 = document.getElementById('dinosaur-two');
